@@ -2,28 +2,42 @@
 
   <header class="page-header">
     <h1>Order #<%= @order.id %></h1>
+    <h4>Email: <%= @order.email %> </h4>
   </header>
 
   <div class="order-summary jumbotron">
     <h4>Thank you for your order!</h4>
+    <h5>Your order details:</h5>
+    <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Product ID</th>
+        <th>Unit Price</th>
+        <th>Quantity</th>
+        <th>Price</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @order.line_items.each do |item| %>
+
+        <%= render 'line-item', product_id: item[:product_id], quantity: item[:quantity].to_i, item_price: item[:item_price_cents], total_price: item[:total_price_cents] %>
+
+      <% end %>
+    </tbody>
+    <tfoot>
+      <tr>
+        <th colspan="3">
+          TOTAL:
+        </th>
+        <th>
+          <%= humanized_money_with_symbol @order.total_cents / 100.00 %>
+        </th>
+      </tr>
+    </tfoot>
+  </table>
   </div>
 
-  <div class="line-items">
-  <%= render @line_items %>
-  </div>
 
   <%= link_to "Continue Shopping", root_path, class: 'btn btn-lg btn-primary' %>
 
 </section>
-
-# We've been asked to change the orders#show page to contain:
-
-# The line items in the order and:
-# Their image, name and description
-# Their respective quantities and line item totals
-# The final amount for the order
-# The email that was used
-# While formatting and design is important, please be cognizant of the time estimate and avoid wasting too much time on that part. That said, you should be consistent and leverage bootstrap just like the other (eg: My Cart) pages do.
-
-# Tips
-# Consider using a partial for rendering each line_item on the order details page. This will keep your show template cleaner.
