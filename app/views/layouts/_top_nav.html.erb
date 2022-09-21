@@ -44,6 +44,15 @@
         </li> %>
       </ul>
       <ul class="navbar-nav">
+        <% if current_user %>
+         <a class="navbar-brand" href="<%= root_path %>">Signed in as: <%= current_user.name %></a>
+         <li class="nav-iten"> <%= link_to "Logout", '/logout', class: "nav-link" %> </li>
+        <% else %>
+          <li class="nav-item"> <%= link_to 'Login', '/login', class: "nav-link"%></li>
+          <li class="nav-item" ><%= link_to 'Signup', '/signup', class: "nav-link" %></li>
+        <% end %>
+        
+
         <li class="nav-item dropdown">
           <a
             class="nav-link dropdown-toggle text-danger"
