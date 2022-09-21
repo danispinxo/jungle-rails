@@ -8,6 +8,22 @@
     <h4>Thank you for your order!</h4>
   </div>
 
+  <div class="line-items">
+  <%= render @line_items %>
+  </div>
+
   <%= link_to "Continue Shopping", root_path, class: 'btn btn-lg btn-primary' %>
 
 </section>
+
+# We've been asked to change the orders#show page to contain:
+
+# The line items in the order and:
+# Their image, name and description
+# Their respective quantities and line item totals
+# The final amount for the order
+# The email that was used
+# While formatting and design is important, please be cognizant of the time estimate and avoid wasting too much time on that part. That said, you should be consistent and leverage bootstrap just like the other (eg: My Cart) pages do.
+
+# Tips
+# Consider using a partial for rendering each line_item on the order details page. This will keep your show template cleaner.
