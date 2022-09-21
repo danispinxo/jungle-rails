@@ -1,2 +1,49 @@
-<h1>Admin::Dashboard#show</h1>
-<p>Find me in app/views/admin/dashboard/show.html.erb</p>
+<h1>Admin &raquo; Dashboard</h1>
+<div class="alert alert-success" role="alert">
+  Signed in with admin username: <b><%= @name %></b>
+</div>
+
+<h3>Categories</h3>
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+      <th scope="col">Kinds of Products</th>
+      <th scope="col">Total Inventory</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @categories.each do |category| %>
+      <% id = category.id.to_s %>
+      <tr>
+      <th scope="row"><%= id %></th>
+      <td><%= category.name %></td>
+      <td><%= Product.where(category_id: id).count %></td>
+      <td><%= Product.where(category_id: id).sum(:quantity) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<hr>
+<h3>Products</h3>
+<table class="table">
+  <thead class="thead-light">
+    <tr>
+      <th scope="col">Total Unique Products</th>
+      <th scope="col">Total Inventory</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><%= @total_products %></td>
+      <td><%= @total_inventory %></td>
+    </tr>
+  </tbody>
+</table>
+
+
+<div class="well">
+  <%= link_to '+ New Product', [:new, :admin, :product], class: 'btn btn-info' %>
+  <%= link_to 'View All Products', [:admin, :products], class: 'btn btn-secondary' %>
+</div>
