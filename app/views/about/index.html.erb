@@ -1,9 +1,16 @@
-<p>This should be linked in the bottom nav as "About Us"</p>
+<div class="jumbotron">
+  <h1 class="display-4">Welcome to the Jungle!</h1>
+  <p class="lead">A plant store with a purpose: to bring life to your home</p>
+  <hr class="my-4">
 
-<p>The page can just contain static content that describes the store. Details about what goes into the content are unclear and unimportant for now. Feel free to get creative here.</p>
+    <p>The page can just contain static content that describes the store. Details about what goes into the content are unclear and unimportant for now. Feel free to get creative here.</p>
 
-<p>Do not forget to update the top nav with a link to the page.</p>
+    <p>Do not implement the internal link using a simple a tag. Mimic the way the other links are created in the nav</p>
 
-<p>Do not implement the internal link using a simple a tag. Mimic the way the other links are created in the nav</p>
+    <p>Use bin/rails routes to figure out what the name of the route is</p>
+  <p class="lead">
+  <%= link_to "Start Shopping!", root_path, class: 'btn btn-lg btn-primary' %>
+  </p>
+</div>
 
-<p>Use bin/rails routes to figure out what the name of the route is</p>
+
