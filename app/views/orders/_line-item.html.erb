@@ -1,10 +1,18 @@
 <tr>
+  <% product = Product.find(product_id) %>
   <td>
-    <h4><%= product_id %></h4>
+    <img src="<%= product.image %>" width="100px"/>
     <br>
   </td>
   <td>
-    <%= item_price %>
+    <h5><%= product.name %></h5>
+    <br>
+  </td>
+  <td>
+    <small><%= product.description %></small>
+  </td>
+  <td>
+    <%= humanized_money_with_symbol item_price / 100.00 %>
   </td>
   <td>
     <div>
@@ -12,6 +20,6 @@
     </div>
   </td>
   <td>
-    <%= item_price * quantity %>
+    <%= humanized_money_with_symbol (item_price * quantity) / 100.00 %>
   </td>
 </tr>
