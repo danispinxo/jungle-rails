@@ -20,9 +20,12 @@
     >
       <span class="navbar-toggler-icon"></span>
     </button>
+
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <%# <li class="nav-item dropdown">
+
+        <li class="nav-item dropdown">
           <a
             class="nav-link dropdown-toggle"
             href="#"
@@ -30,22 +33,25 @@
             role="button"
             data-bs-toggle="dropdown"
             aria-expanded="false"
-          > %>
-            <%# Categories %>
-          <%# </a>
-          <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdown"> %>
+          > Categories </a>
+
+          <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdown">
             <% Category.all.each do |category| %>
             <li class="nav-item">
               <%= link_to category.name, category, class: "nav-link" %>
             </li>
             <% end %>
-            <%= link_to "About Us", [:about, :index], class: "nav-link" %>
-          <%# </ul>
-        </li> %>
+          </ul>
+
+        </li>
+
+        <%= link_to "About Us", [:about, :index], class: "nav-link" %>
+
       </ul>
+
       <ul class="navbar-nav">
         <% if current_user %>
-         <a class="navbar-brand" href="<%= root_path %>">Signed in as: <%= current_user.name %></a>
+         <a class="nav-link" href="<%= root_path %>">Signed in as: <%= current_user.name %></a>
          <li class="nav-iten"> <%= link_to "Logout", '/logout', class: "nav-link" %> </li>
         <% else %>
           <li class="nav-item"> <%= link_to 'Login', '/login', class: "nav-link"%></li>
@@ -62,7 +68,7 @@
             data-bs-toggle="dropdown"
             aria-expanded="false"
           >
-            Admin
+          <%= fa_icon "lock" %> Admin
           </a>
           <ul class="dropdown-menu dropdown-menu-dark">
             <li><%= link_to 'Dashboard', [:admin, :root], class: "nav-link" %></li>
