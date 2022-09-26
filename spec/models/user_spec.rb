@@ -45,9 +45,7 @@ RSpec.describe User, type: :model do
       expect(@repeat_user.errors.full_messages).to include("Email has already been taken")
       expect(@repeat_user).to_not be_valid
     end
-  end
 
-  describe 'Password' do
     it 'should throw an error if the password is too short' do
       @user = User.create(name: 'New User', email: 'afake@sample.com', password: 'ab', password_confirmation: 'ab')
 
@@ -55,4 +53,12 @@ RSpec.describe User, type: :model do
       expect(@user).to_not be_valid
     end 
   end
+
+  describe '.authenticate_with_credentials' do
+    it 'should authenticate a user with the correct information' do
+
+      @login = User.authenticate_with_credentials('fake@sample.com', 'password')
+    end
+  end
+
 end
