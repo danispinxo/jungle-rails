@@ -55,10 +55,41 @@ RSpec.describe User, type: :model do
   end
 
   describe '.authenticate_with_credentials' do
-    it 'should authenticate a user with the correct information' do
 
-      @login = User.authenticate_with_credentials('fake@sample.com', 'password')
+    it 'should authenticate a user with the correct information' do
+      @new_user = User.create(name: 'Sign Me In', email: 'signin@example.com', password: 'password', password_confirmation: 'password')
+
+      @login = User.authenticate_with_credentials('signin@example.com', 'password')
+      expect(@login.name).to eq('Sign Me In')
     end
+
+    it 'should not authenticate a user with incorrect password' do
+      @new_user = User.create(name: 'Sign Me In', email: 'signin@example.com', password: 'password', password_confirmation: 'password')
+
+      @login = User.authenticate_with_credentials('signin@example.com', 'incorrectpassword')
+
+      expect(@login).to be_nil
+    end
+
+    it 'should not authenticate a user that does not have an account' do
+      @login = User.authenticate_with_credentials('unregistered.user@sample.com', 'password')
+      expect(@login).to be_nil
+    end
+
+    it 'should authenticate a user with spaces before or after email when logging in' do
+      @new_user = User.create(name: 'Sign Me In', email: 'signin@example.com', password: 'password', password_confirmation: 'password')
+
+      @login = User.authenticate_with_credentials('  signin@example.com  ', 'password')
+      expect(@login.name).to eq('Sign Me In')
+    end
+
+    it 'should authenticate a user with different CASE in email when logging in' do
+      @new_user = User.create(name: 'Sign Me In', email: 'signin@example.com', password: 'password', password_confirmation: 'password')
+
+      @login = User.authenticate_with_credentials('siGnin@example.COM', 'password')
+      expect(@login.name).to eq('Sign Me In')
+    end
+
   end
 
 end
