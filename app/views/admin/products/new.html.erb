@@ -52,7 +52,7 @@
 
         <div class="form-group">
           <%= form.label :image %>
-          <%= form.file_field :image %>
+          <%= form.file_field :image, required: true %>
         </div>
 
         <%= form.submit 'Create Product', class: 'btn btn-primary' %>
