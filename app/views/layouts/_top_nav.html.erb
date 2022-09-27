@@ -52,7 +52,7 @@
       <ul class="navbar-nav">
         <% if current_user %>
          <a class="nav-link" href="<%= root_path %>">Signed in as: <%= current_user.name %></a>
-         <li class="nav-iten"> <%= link_to "Logout", '/logout', class: "nav-link" %> </li>
+         <li class="nav-item"> <%= link_to "Logout", '/logout', class: "nav-link" %> </li>
         <% else %>
           <li class="nav-item"> <%= link_to 'Login', '/login', class: "nav-link"%></li>
           <li class="nav-item" ><%= link_to 'Signup', '/signup', class: "nav-link" %></li>

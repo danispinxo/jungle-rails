@@ -5,6 +5,12 @@ return unless Rails.env.test?
 
 CypressRails.hooks.before_server_start do
   # Called once, before either the transaction or the server is started
+  if User.count > 0 
+    User.destroy(1)
+    puts "Destroyed test users"
+  end
+
+
   cat1 = Category.find_or_create_by! name: 'Evergreens'
 
   cat1.products.create!({
