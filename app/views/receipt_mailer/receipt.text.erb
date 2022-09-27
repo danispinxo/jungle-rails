@@ -1,5 +1,10 @@
 Thank you for your purchase!
+Order No. <%= @order.id %>
+-------------------------------------
+You purchased <%= @order.line_items.count %> items!
 
-You purchased this stuff. 
+Your purchase total: <%= humanized_money_with_symbol @order.total_cents / 100.00 %>
+
+Your full order details can be found <a href="http://localhost:3000/orders/<%= @order.id %>">here</a>.
 
 Thanks for your order and have a great day!
