@@ -51,7 +51,7 @@ describe('users can sign up and log in or log out', () => {
     it('Can logout from a different page', () => {
       cy.get('.me-auto > [href="/about"]').click()
       cy.get('#navbarSupportedContent > :nth-child(2) > :nth-child(2) > .nav-link').click()
-      cy.contains('Signup')
+      cy.contains('Sign Up')
     })
 
   })
