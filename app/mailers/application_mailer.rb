@@ -3,6 +3,7 @@ class ApplicationMailer < ActionMailer::Base
   layout 'mailer'
 
   def check_mail
+    # Rails.logger.info in place of puts
     
     ActionMailer::Base.deliveries.each { |mail|
       puts mail
