@@ -53,8 +53,11 @@ class OrdersController < ApplicationController
         item_price: product.price,
         total_price: product.price * quantity
       )
+      new_quantity = product.quantity - quantity
+      product.update(quantity: new_quantity)
     end
     order.save!
+
     order
   end
 

@@ -5,14 +5,12 @@ RSpec.describe Product, type: :model do
     cat1 = Category.find_or_create_by! name: 'Evergreens'
 
     it 'should have one item created after being created' do
-      
       @product = Product.create(name: "Plant Name", price_cents: 6999, quantity: 12, category: cat1)
 
       expect(Product.all.count).to eq(1)
     end
 
     it 'should not create a valid item without a name' do
-      
       @product = Product.create(price_cents: 6999, quantity: 12, category: cat1)
 
       expect(@product.errors.full_messages).to include("Name can't be blank")
