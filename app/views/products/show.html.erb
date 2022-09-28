@@ -21,7 +21,54 @@
           <%= button_to add_item_cart_path(product_id: @product.id), class: 'btn',  method: :post do %>
             <%= fa_icon "shopping-cart", text: 'Add' %>
           <% end %>           
-        <% end %>  
+        <% end %>
+      </div>
+      <br><br>
+
+      <div class="ratings">
+        <table class="table table-bordered">
+          <thead>
+              <tr>
+              <th>User</th>
+              <th>Description</th>
+              <th>Rating</th>
+            </tr>
+          </thead>
+          <tbody>
+
+            <% @reviews.each do |review| %>
+              <% user = User.where(id: review.user_id.to_i) %>
+              <tr>
+                <td>
+
+                  <%= review.user_id %>
+
+                </td>
+                <td>
+                  <p><%= review.description %></p>
+                </td>
+                <td>
+
+                  <% (review.rating).times do %>
+                    <%= fa_icon "star" %>
+                  <% end %>
+
+                </td>
+              </tr>
+            <% end %>
+
+          </tbody>
+          <tfoot>
+            <tr>
+              <th colspan="2">
+                Average Rating:
+              </th>
+              <th>
+                <%= @reviews.average(:rating) %>
+              </th>
+            </tr>
+          </tfoot>
+        </table>
       </div>
     </div>
   </article>
