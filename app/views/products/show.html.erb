@@ -24,11 +24,34 @@
         <% end %>
       </div>
       <br><br>
+    </div>
 
+    <div class="row" id="new-review-form">
+      <h2>Review This Plant</h2>
+      <div class="col-sm-6 col-sm-offset-1">
+        <%= form_for [@product, @review] do |form| %>
+  
+          <div class="form-group">
+            <%= form.label :description %>
+            <%= form.text_area :description, class: 'form-control' %>
+          </div>
+          <div class="form-group">
+            <%= form.label :rating %>
+            <%= form.select :rating, ['1', '2', '3', '4', '5'], class: 'form-control' %>
+            <br>
+          </div>
+  
+          <%= form.submit 'Create Review', class: 'btn btn-primary' %>
+        <% end %>
+      </div>
+    </div>
+    
+    <div id="existing-reviews">
+      <h2>Product Reviews</h2>
       <div class="ratings">
         <table class="table table-bordered">
           <thead>
-              <tr>
+            <tr>
               <th>User</th>
               <th>Description</th>
               <th>Rating</th>
@@ -40,19 +63,15 @@
               <% user = User.find_by(id: review.user_id.to_i) %>
               <tr>
                 <td>
-
                   <%= user.name %>
-
                 </td>
                 <td>
                   <p><%= review.description %></p>
                 </td>
                 <td>
-
                   <% (review.rating).times do %>
                     <%= fa_icon "star" %>
                   <% end %>
-
                 </td>
               </tr>
             <% end %>
