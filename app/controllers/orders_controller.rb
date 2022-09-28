@@ -1,5 +1,5 @@
 class OrdersController < ApplicationController
-
+  
   def show
     @order = Order.find(params[:id])
   
@@ -21,6 +21,7 @@ class OrdersController < ApplicationController
     redirect_to cart_path, flash: { error: e.message }
   end
 
+
   private
 
   def empty_cart!
@@ -36,6 +37,8 @@ class OrdersController < ApplicationController
       currency:    'cad'
     )
   end
+
+
 
   def create_order(stripe_charge)
     order = Order.new(
@@ -53,9 +56,9 @@ class OrdersController < ApplicationController
         item_price: product.price,
         total_price: product.price * quantity
       )
-      new_quantity = product.quantity - quantity
-      product.update(quantity: new_quantity)
+
     end
+
     order.save!
 
     order
